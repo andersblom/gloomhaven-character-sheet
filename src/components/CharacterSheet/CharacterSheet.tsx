@@ -69,7 +69,12 @@ const CharacterSheet: React.FC<InjectedFormProps<Props>> = ({
             </div>
             <div className="input-field">
                 <label htmlFor="notes">Notes:</label>
-                <Field name="notes" component="textarea" placeholder="Notes" />
+                <Field
+                    name="notes"
+                    component="textarea"
+                    placeholder="Notes"
+                    rows="10"
+                />
             </div>
             <div className="input-field">
                 <label htmlFor="gold">Gold:</label>
