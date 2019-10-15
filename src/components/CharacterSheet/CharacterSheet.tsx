@@ -86,15 +86,6 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                         />
                     </div>
                     <div className="input-field">
-                        <label htmlFor="level">Level:</label>
-                        <Field
-                            name="level"
-                            component="input"
-                            type="number"
-                            placeholder="Level"
-                        />
-                    </div>
-                    <div className="input-field">
                         <label htmlFor="health">Health:</label>
                         <Field
                             name="health"
@@ -129,6 +120,21 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                 <div className="column right">
                     <div className="section">
                         <h1>Perks</h1>
+                        {selectedCharacter &&
+                            selectedCharacter.perks.map((perk, index) => (
+                                <div>
+                                    <label>{perk.label}</label>
+                                    {Array.from(Array(perk.uses).keys()).map(
+                                        (use, idx) => (
+                                            <Field
+                                                name={`perk[${index}].use[${idx}]`}
+                                                component="input"
+                                                type="checkbox"
+                                            />
+                                        )
+                                    )}
+                                </div>
+                            ))}
                     </div>
                     <div className="section">
                         <div className="input-field">

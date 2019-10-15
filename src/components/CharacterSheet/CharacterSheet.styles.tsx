@@ -18,4 +18,8 @@ export const StyledForm = styled.form`
         height: 40px;
         width: 100px;
     }
+
+    label {
+        font-size: 14px;
+    }
 `
