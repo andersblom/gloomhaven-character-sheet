@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
 import Panel from 'components/Panel/Panel'
-import CharacterSheetContainer from 'containers/CharacterSheetContainer'
+import CharacterSheet from 'components/CharacterSheet/CharacterSheet'
 import store from 'store'
 import './App.css'
 
@@ -14,7 +14,7 @@ const App: React.FC = () => {
                 <div className="App">
                     <header className="App-header">
                         <Panel>
-                            <CharacterSheetContainer />
+                            <CharacterSheet />
                         </Panel>
                     </header>
                 </div>

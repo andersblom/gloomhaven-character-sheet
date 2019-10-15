@@ -28,7 +28,7 @@ const ItemsList: React.FC<WrappedFieldArrayProps<{}>> = ({ fields }) => {
         if (!fields.length) {
             fields.push({})
         }
-    }, [])
+    }, [fields])
     const handleAddItem = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         fields.push({})

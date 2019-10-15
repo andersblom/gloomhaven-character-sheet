@@ -5,6 +5,10 @@ export const StyledForm = styled.form`
     flex-direction: column;
     align-items: center;
 
+    .sheet-inner {
+        display: flex;
+    }
+
     .input-field {
         max-width: 400px;
     }
