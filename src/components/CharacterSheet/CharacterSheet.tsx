@@ -177,11 +177,16 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                             </option>
                         ))}
                     </Field>
-                    <div>
-                        <BattleGoalCard card={selectedBattleGoal} />
-                        <div>Battle Goal notes:</div>
-                        <Field name="battleGoalNotes" component="textarea" />
-                    </div>
+                    {selectedBattleGoal && (
+                        <div>
+                            <BattleGoalCard card={selectedBattleGoal} />
+                            <div>Battle Goal notes:</div>
+                            <Field
+                                name="battleGoalNotes"
+                                component="textarea"
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
             <input type="submit" className="submit-button" />

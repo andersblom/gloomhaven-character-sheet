@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import CardFront from './goal_card_front.png'
 import CardBack from './goal_card_back.png'
 
 interface CardProps {
@@ -7,38 +8,52 @@ interface CardProps {
 
 export const Card = styled.div<CardProps>`
     height: 260px;
-    width: 192px;
-    background-image: url(${CardBack});
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    border-radius: 6px;
+    width: 220px;
     cursor: pointer;
-    backface-visibility: hidden;
+    display: flex;
 
     ${props =>
         props.flipped &&
         css`
-            transform: rotateY(180deg);
+            .inner {
+                transform: rotateY(180deg);
+            }
         `}
 
-    .front, .back {
-        backface-visibility: hidden;
+    .inner {
+        position: relative;
         width: 100%;
         height: 100%;
-    }
-
-    .back {
-        transform: rotateY(180deg);
-    }
-
-    .inner {
-        padding: 50px 44px;
-        display: flex;
-        flex-direction: column;
-
+        text-align: center;
         transition: transform 0.8s;
         transform-style: preserve-3d;
+    }
+
+    /* Position the front and back side */
+    .front,
+    .back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 6px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* Style the front side (fallback if image is missing) */
+    .front {
+        background-image: url(${CardFront});
+        display: flex;
+        flex-direction: column;
+        padding: 50px 44px;
+        box-sizing: border-box;
+    }
+
+    /* Style the back side */
+    .back {
+        background-image: url(${CardBack});
+        transform: rotateY(180deg);
     }
 
     .name {

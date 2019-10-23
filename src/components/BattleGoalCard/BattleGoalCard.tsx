@@ -3,12 +3,11 @@ import { Card } from './BattleGoalCardStyles'
 
 import { BattleGoalCard } from 'lib/interfaces'
 interface Props {
-    card?: BattleGoalCard
+    card: BattleGoalCard
 }
 
 const BattleGoal = ({ card }: Props) => {
-    const [flipped, setFlipped] = useState(false)
-    if (!card) return null
+    const [flipped, setFlipped] = useState(true)
     return (
         <Card flipped={flipped} onClick={() => setFlipped(!flipped)}>
             <div className="inner">
@@ -23,7 +22,7 @@ const BattleGoal = ({ card }: Props) => {
                             ))}
                     </div>
                 </div>
-                <div className="back">test</div>
+                <div className="back" />
             </div>
         </Card>
     )
