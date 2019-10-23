@@ -13,3 +13,9 @@ export interface Character {
     levels: Level[]
     perks: Perk[]
 }
+
+export interface BattleGoalCard {
+    name: string
+    goal: string
+    reward: number
+}

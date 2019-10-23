@@ -9,20 +9,23 @@ import {
 import { connect } from 'react-redux'
 
 import ItemsList from 'components/ItemsList/ItemsList'
+import BattleGoalCard from 'components/BattleGoalCard/BattleGoalCard'
 
-import { CHARACTERS } from 'lib/constants'
+import { CHARACTERS, BATTLE_GOALS } from 'lib/constants'
 
 import { StyledForm } from './CharacterSheet.styles'
 
 interface Props {
     character: string
     experience: string
+    battleGoal: string
 }
 
 const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
     handleSubmit,
     character,
     experience,
+    battleGoal,
 }) => {
     const onSubmit = (values: any) => {
         /**
@@ -35,7 +38,7 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
 
     const selectedCharacter = CHARACTERS.find(i => i.name === character)
 
-    const characterLevel =
+    const characterLevelNumber =
         selectedCharacter &&
         selectedCharacter.levels.reduce((prev, current, index, array) => {
             if (array[index].experience <= Number(experience)) {
@@ -43,6 +46,15 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
             }
             return prev
         }, 0)
+
+    const characterLevelObject =
+        selectedCharacter &&
+        characterLevelNumber &&
+        selectedCharacter.levels[characterLevelNumber - 1]
+
+    const selectedBattleGoal = BATTLE_GOALS.find(
+        goal => goal.name === battleGoal
+    )
 
     return (
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -65,7 +77,7 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                                 </option>
                             ))}
                         </Field>
-                        (level {characterLevel})
+                        (level {characterLevelNumber})
                     </div>
                     <div className="input-field">
                         <label htmlFor="prospherity">Prospherity:</label>
@@ -92,6 +104,10 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                             component="input"
                             type="number"
                             placeholder="Health"
+                            max={
+                                characterLevelObject &&
+                                characterLevelObject.health
+                            }
                         />
                     </div>
                     <div className="input-field">
@@ -149,6 +165,25 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                     </div>
                 </div>
             </div>
+            <hr />
+            <div className="battle-goal-container">
+                <div className="input-field">
+                    <label htmlFor="battleGoal">Battle Goal Card:</label>
+                    <Field name="battleGoal" component="select" type="select">
+                        <option />
+                        {BATTLE_GOALS.map(goal => (
+                            <option key={goal.name} value={goal.name}>
+                                {goal.name}
+                            </option>
+                        ))}
+                    </Field>
+                    <div>
+                        <BattleGoalCard card={selectedBattleGoal} />
+                        <div>Battle Goal notes:</div>
+                        <Field name="battleGoalNotes" component="textarea" />
+                    </div>
+                </div>
+            </div>
             <input type="submit" className="submit-button" />
         </StyledForm>
     )
@@ -164,6 +199,7 @@ const mapStateToProps = (state: any) => ({
     initialValues: JSON.parse(localStorage.getItem('gloomy_bois') || '{}'),
     character: selector(state, 'character'),
     experience: selector(state, 'experience'),
+    battleGoal: selector(state, 'battleGoal'),
 })
 
 export default connect(

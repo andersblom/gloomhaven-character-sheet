@@ -1,4 +1,4 @@
-import { Character } from './interfaces'
+import { Character, BattleGoalCard } from './interfaces'
 
 export const CHARACTERS: Character[] = [
     {
@@ -87,5 +87,25 @@ export const CHARACTERS: Character[] = [
                 uses: 1,
             },
         ],
+    },
+]
+
+export const BATTLE_GOALS: BattleGoalCard[] = [
+    {
+        name: 'Streamliner',
+        goal:
+            'Have five or more total cards in your hand and discard at the end of the Scenario.',
+        reward: 1,
+    },
+    {
+        name: 'Sadist',
+        goal: 'Kill five or more monsters during this scenario.',
+        reward: 1,
+    },
+    {
+        name: 'Indigent',
+        goal:
+            'Loot no money tokens or treasure overlay titles during this scenario.',
+        reward: 2,
     },
 ]
