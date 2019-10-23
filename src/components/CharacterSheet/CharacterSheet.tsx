@@ -138,11 +138,12 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                         <h1>Perks</h1>
                         {selectedCharacter &&
                             selectedCharacter.perks.map((perk, index) => (
-                                <div>
+                                <div key={index}>
                                     <label>{perk.label}</label>
                                     {Array.from(Array(perk.uses).keys()).map(
                                         (use, idx) => (
                                             <Field
+                                                key={idx}
                                                 name={`perk[${index}].use[${idx}]`}
                                                 component="input"
                                                 type="checkbox"

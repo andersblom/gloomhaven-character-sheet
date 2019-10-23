@@ -17,8 +17,8 @@ const BattleGoal = ({ card }: Props) => {
                     <div className="reward">
                         {Array(card.reward)
                             .fill({})
-                            .map(reward => (
-                                <div>√</div>
+                            .map((item, index) => (
+                                <div key={index}>√</div>
                             ))}
                     </div>
                 </div>
