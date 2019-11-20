@@ -22,6 +22,7 @@ const items = [
     { name: 'Battle Axe', cost: 20 },
     { name: 'Weighted Net', cost: 20 },
     { name: 'Stun Powder', cost: 20 },
+    { name: 'Pendant of Dark Packs', cost: 75 },
 ]
 const ItemsList: React.FC<WrappedFieldArrayProps<{}>> = ({ fields }) => {
     useEffect(() => {
