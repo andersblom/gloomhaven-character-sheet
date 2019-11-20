@@ -39,8 +39,7 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
     const selectedCharacter = CHARACTERS.find(i => i.name === character)
 
     const characterLevelNumber =
-        selectedCharacter &&
-        selectedCharacter.levels.reduce((prev, current, index, array) => {
+        selectedCharacter?.levels.reduce((prev, current, index, array) => {
             if (array[index].experience <= Number(experience)) {
                 return prev + 1
             }
@@ -48,9 +47,8 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
         }, 0)
 
     const characterLevelObject =
-        selectedCharacter &&
         characterLevelNumber &&
-        selectedCharacter.levels[characterLevelNumber - 1]
+        selectedCharacter?.levels[characterLevelNumber - 1]
 
     const selectedBattleGoal = BATTLE_GOALS.find(
         goal => goal.name === battleGoal
@@ -105,8 +103,7 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                             type="number"
                             placeholder="Health"
                             max={
-                                characterLevelObject &&
-                                characterLevelObject.health
+                                characterLevelObject && characterLevelObject.health
                             }
                         />
                     </div>
@@ -136,8 +133,7 @@ const CharacterSheet: React.FC<InjectedFormProps<{}, Props> & Props> = ({
                 <div className="column right">
                     <div className="section">
                         <h1>Perks</h1>
-                        {selectedCharacter &&
-                            selectedCharacter.perks.map((perk, index) => (
+                        {selectedCharacter?.perks.map((perk, index) => (
                                 <div key={index}>
                                     <label>{perk.label}</label>
                                     {Array.from(Array(perk.uses).keys()).map(
