@@ -108,4 +108,9 @@ export const BATTLE_GOALS: BattleGoalCard[] = [
             'Loot no money tokens or treasure overlay titles during this scenario.',
         reward: 2,
     },
+    {
+        name: 'Straggler',
+        goal: 'Take only long rests during the scenario.',
+        reward: 1,
+    },
 ]
